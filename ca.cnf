@@ -1,0 +1,33 @@
+[ ca ]
+default_ca = Fishdrowned_ROOT_CA
+
+[ Fishdrowned_ROOT_CA ]
+new_certs_dir   = ./out/newcerts
+certificate     = ./out/root.cert.pem
+database        = ./out/index.txt
+private_key     = ./out/root.key.pem
+serial          = ./out/serial
+unique_subject  = no
+default_days    = 1461
+default_md      = sha256
+policy          = policy_loose
+x509_extensions = ca_extensions
+copy_extensions = copy
+
+[ policy_loose ]
+countryName             = optional
+stateOrProvinceName     = optional
+localityName            = optional
+organizationName        = optional
+organizationalUnitName  = optional
+commonName              = supplied
+emailAddress            = optional
+
+[ ca_extensions ]
+basicConstraints = CA:false
+nsComment = "OpenSSL Generated Server Certificate"
+subjectKeyIdentifier = hash
+authorityKeyIdentifier = keyid:always
+# subjectAltName = IP:127.0.0.1
+keyUsage = digitalSignature,keyEncipherment
+extendedKeyUsage = serverAuth
