@@ -16,13 +16,13 @@ Linux，openssl
 ./gen.root.sh
 ```
 生成的根证书私钥位于：  
-`ssl/out/root.key.pem`
+`ssl/out/root.key.pem`  
 生成的根证书位于：  
-`ssl/out/root.cert.pem`
+`ssl/out/root.cert.pem`  
 
 成功之后，把根证书导入到操作系统里面，信任这个证书。
 
-### 2. 然后用 gen.cert.sh 生成网站证书
+### 2. 用 gen.cert.sh 生成网站证书
 ```bash
 ./gen.cert.sh <domain>
 ```
