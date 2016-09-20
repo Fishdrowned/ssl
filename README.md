@@ -8,8 +8,8 @@
 ## 优点
 1. 你可以创建任意网站证书，只需导入一次根证书，无需多次导入；
 1. 减少重复又无谓的组织信息输入，创建证书时只需要输入域名；
-1. 泛域名证书可以减少 `nginx` 配置，例如你要模拟 CDN：
-假设你的项目网站是 `example.dev`，CDN 网站设置为 `cdn.example.dev`，
+1. 泛域名证书可以减少 `nginx` 配置，例如你要模拟 CDN：  
+假设你的项目网站是 `example.dev`，CDN 网站设置为 `cdn.example.dev`，  
 你只需在 `nginx` 里面配置一个网站，`server_name` 同时填写  `example.dev`  
 和 `cdn.example.dev`，它们可以使用同一个 `*.example.dev` 的证书。
 
