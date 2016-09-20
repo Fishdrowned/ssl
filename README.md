@@ -44,7 +44,9 @@ ssl/out/<domain>-<date>-<time>/<domain>.bundle.cert.pem
 你可以运行 `flush.sh` 来清空所有历史，包括根证书和网站证书。
 
 ## 配置
-你可以修改 `ca.cnf`
+你可以修改 `ca.cnf` 来自定义你的根证书名称和组织。
+
+你也修改 `gen.cert.sh` 来自定义你的网站证书组织。
 
 ## 参考
 [Vault and self signed SSL certificates](http://dunne.io/vault-and-self-signed-ssl-certificates)
