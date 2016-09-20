@@ -22,6 +22,8 @@ Linux，openssl
 
 成功之后，把根证书导入到操作系统里面，信任这个证书。
 
+根证书的有效期是 10 年，你可以修改 `gen.root.sh` 来修改这个年限。
+
 ### 2. 用 gen.cert.sh 生成网站证书
 ```bash
 ./gen.cert.sh <domain>
@@ -34,6 +36,8 @@ ssl/out/<domain>-<date>-<time>/<domain>.cert.pem
 ssl/out/<domain>-<date>-<time>/<domain>.bundle.cert.pem
 ```
 
+证书有效期是 5 年，你可以修改 `ca.cnf` 来修改这个年限。
+
 私钥就是第一步生成的那个根证书私钥，即：  
 `ssl/out/root.key.pem`
 
@@ -44,9 +48,14 @@ ssl/out/<domain>-<date>-<time>/<domain>.bundle.cert.pem
 你可以运行 `flush.sh` 来清空所有历史，包括根证书和网站证书。
 
 ## 配置
-你可以修改 `ca.cnf` 来自定义你的根证书名称和组织。
+你可以修改 `ca.cnf` 来修改你的证书年限。
+```ini
+default_days    = 1461
+```
 
-你也修改 `gen.cert.sh` 来自定义你的网站证书组织。
+可以修改 `gen.root.sh` 来自定义你的根证书名称和组织。
+
+也可以修改 `gen.cert.sh` 来自定义你的网站证书组织。
 
 ## 参考
 [Vault and self signed SSL certificates](http://dunne.io/vault-and-self-signed-ssl-certificates)
