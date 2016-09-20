@@ -41,7 +41,7 @@ ssl/out/<domain>-<date>-<time>/<domain>.bundle.cert.pem
 私钥就是第一步生成的那个根证书私钥，即：  
 `ssl/out/root.key.pem`
 
-其中 `bundle.cert.pem` 是已经拼接好的证书，可以添加到 `nginx` 配置里面。  
+其中 `<domain>.bundle.cert.pem` 是已经拼接好 CA 的证书，可以添加到 `nginx` 配置里面。  
 然后你就可以愉快地用 `https` 来访问你本地的开发网站了。
 
 ## 清空
