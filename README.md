@@ -36,7 +36,7 @@ ssl/out/<domain>-<date>-<time>/<domain>.cert.pem
 ssl/out/<domain>-<date>-<time>/<domain>.bundle.cert.pem
 ```
 
-证书有效期是 5 年，你可以修改 `ca.cnf` 来修改这个年限。
+证书有效期是 4 年，你可以修改 `ca.cnf` 来修改这个年限。
 
 私钥就是第一步生成的那个根证书私钥，即：  
 `ssl/out/root.key.pem`
