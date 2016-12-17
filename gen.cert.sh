@@ -5,11 +5,19 @@ then
     echo
     echo 'Issue a wildcard SSL certification with Fishdrowned ROOT CA'
     echo
-    echo 'Usage: ./gen.cert.sh <domain>'
+    echo 'Usage: ./gen.cert.sh <domain> [<domain2>] [<domain3>] [<domain4>] ...'
     echo '    <domain>          The domain name of your site, like "example.dev",'
     echo '                      you will get a certification for *.example.dev'
+    echo '                      Multiple domains are acceptable'
     exit;
 fi
+
+SAN=""
+for var in "$@"
+do
+    SAN+="DNS:*.${var},DNS:${var},"
+done
+SAN=${SAN: : -1}
 
 # Move to root directory
 cd "$(dirname "${BASH_SOURCE[0]}")"
@@ -23,7 +31,7 @@ openssl req -new -out "${DIR}/$1.csr.pem" \
     -key out/root.key.pem \
     -reqexts SAN \
     -config <(cat /etc/ssl/openssl.cnf \
-        <(printf "[SAN]\nsubjectAltName=DNS:*.$1,DNS:$1")) \
+        <(printf "[SAN]\nsubjectAltName=${SAN}")) \
     -subj "/C=CN/ST=Guangdong/L=Guangzhou/O=Fishdrowned/OU=$1/CN=*.$1"
 
 # Issue certification
@@ -37,8 +45,3 @@ cat "${DIR}/$1.cert.pem" ./out/root.cert.pem > "${DIR}/$1.bundle.cert.pem"
 echo
 echo "Certifications are located in:"
 find "${DIR}/" -type f
-
-if [ "$2" ]
-then
-    $2 "${DIR}/$1"
-fi

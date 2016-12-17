@@ -12,6 +12,12 @@
 假设你的项目网站是 `example.dev`，CDN 网站设置为 `cdn.example.dev`，  
 你只需在 `nginx` 里面配置一个网站，`server_name` 同时填写  `example.dev`  
 和 `cdn.example.dev`，它们可以使用同一个 `*.example.dev` 的证书。
+1. 现在你只需要一个证书，就可以搞定所有项目网站！
+
+我当时怎么没想到可以这样用 `SAN`：
+```ini
+subjectAltName=DNS:*.one.dev,DNS:one.dev,DNS:*.two.dev,DNS:two.dev,DNS:*.three.dev,DNS:three.dev,DNS:*.four.dev,DNS:four.dev
+```
 
 ## 系统要求
 1. Linux，openssl
@@ -36,9 +42,11 @@
 
 ### 2. 用 gen.cert.sh 生成网站证书
 ```bash
-./gen.cert.sh <domain>
+./gen.cert.sh <domain> [<domain2>] [<domain3>] [<domain4>] ...
 ```
 把 `<domain>` 替换成你的域名，例如 `example.dev`
+
+如果有多个项目网站，可以把所有网站都加上去，用空格隔开。
 
 生成的证书位于：
 ```text
