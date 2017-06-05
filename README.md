@@ -75,9 +75,14 @@ default_days    = 1461
 
 也可以修改 `gen.cert.sh` 来自定义你的网站证书组织。
 
-## 参考
+## 参考 / 致谢
 [Vault and self signed SSL certificates](http://dunne.io/vault-and-self-signed-ssl-certificates)
 
 [利用OpenSSL创建自签名的SSL证书备忘](http://wangye.org/blog/archives/732/)
 
 [Provide subjectAltName to openssl directly on command line](http://security.stackexchange.com/questions/74345/provide-subjectaltname-to-openssl-directly-on-command-line)
+
+## 关于 Let's Encrypt 客户端
+官方客户端 `certbot` [太复杂了](https://github.com/Neilpang/acme.sh/issues/386)，推荐使用 [acme.sh](https://github.com/Neilpang/acme.sh/wiki/%E8%AF%B4%E6%98%8E)，虽然我还没用过。
+
+我当时用的是 [`letsencrypt/letsencrypt`](https://github.com/letsencrypt/letsencrypt) （`certbot` 的前身），折腾了几天，然后把编译过的文件抽了出来，再套上一层自动化脚本，至今还能正常更新，就懒得挪窝了。
