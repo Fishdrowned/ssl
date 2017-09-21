@@ -86,3 +86,6 @@ default_days    = 1461
 官方客户端 `certbot` [太复杂了](https://github.com/Neilpang/acme.sh/issues/386)，推荐使用 [acme.sh](https://github.com/Neilpang/acme.sh/wiki/%E8%AF%B4%E6%98%8E)，虽然我还没用过。
 
 我当时用的是 [`letsencrypt/letsencrypt`](https://github.com/letsencrypt/letsencrypt) （`certbot` 的前身），折腾了几天，然后把编译过的文件抽了出来，再套上一层自动化脚本，至今还能正常更新，就懒得挪窝了。
+
+## 关于 .dev 域名
+[Chrome to force .dev domains to HTTPS via preloaded HSTS](https://ma.ttias.be/chrome-force-dev-domains-https-via-preloaded-hsts/) ([2017-9-16](https://chromium-review.googlesource.com/c/chromium/src/+/669923))
