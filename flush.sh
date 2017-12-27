@@ -7,5 +7,6 @@ mkdir out
 cd out
 mkdir newcerts
 touch index.txt
+echo "unique_subject = no" > index.txt.attr
 echo 1000 > serial
 echo 'Done'

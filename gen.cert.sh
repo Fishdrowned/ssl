@@ -23,25 +23,34 @@ SAN=${SAN: : -1}
 cd "$(dirname "${BASH_SOURCE[0]}")"
 
 # Create domain directory
-DIR="out/$1-`date +%Y%m%d-%H%M`"
-mkdir ${DIR}
+BASE_DIR="out/$1"
+TIME=`date +%Y%m%d-%H%M`
+DIR="${BASE_DIR}/${TIME}"
+mkdir -p ${DIR}
 
 # Create CSR
 openssl req -new -out "${DIR}/$1.csr.pem" \
-    -key out/root.key.pem \
+    -key out/cert.key.pem \
     -reqexts SAN \
-    -config <(cat /etc/ssl/openssl.cnf \
+    -config <(cat ca.cnf \
         <(printf "[SAN]\nsubjectAltName=${SAN}")) \
     -subj "/C=CN/ST=Guangdong/L=Guangzhou/O=Fishdrowned/OU=$1/CN=*.$1"
 
 # Issue certification
 # openssl ca -batch -config ./ca.cnf -notext -in "${DIR}/$1.csr.pem" -out "${DIR}/$1.cert.pem"
-openssl ca -config ./ca.cnf -in "${DIR}/$1.csr.pem" -out "${DIR}/$1.cert.pem" -cert ./out/root.cert.pem -keyfile ./out/root.key.pem
+openssl ca -config ./ca.cnf -batch -notext \
+    -in "${DIR}/$1.csr.pem" \
+    -out "${DIR}/$1.crt" \
+    -cert ./out/root.crt \
+    -keyfile ./out/root.key.pem
 
 # Chain certification with CA
-cat "${DIR}/$1.cert.pem" ./out/root.cert.pem > "${DIR}/$1.bundle.cert.pem"
+cat "${DIR}/$1.crt" ./out/root.crt > "${DIR}/$1.bundle.crt"
+ln -snf "./${TIME}/$1.bundle.crt" "${BASE_DIR}/$1.bundle.crt"
+ln -snf "./${TIME}/$1.crt" "${BASE_DIR}/$1.crt"
+ln -snf "../cert.key.pem" "${BASE_DIR}/$1.key.pem"
 
 # Output certifications
 echo
 echo "Certifications are located in:"
-find "${DIR}/" -type f
+ls -la --color `pwd`/${BASE_DIR}/*.*

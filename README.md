@@ -33,8 +33,10 @@ subjectAltName=DNS:*.one.dev,DNS:one.dev,DNS:*.two.dev,DNS:two.dev,DNS:*.three.d
 ```
 生成的根证书私钥位于：  
 `ssl/out/root.key.pem`  
-生成的根证书位于：  
-`ssl/out/root.cert.pem`  
+根证书位于：  
+`ssl/out/root.crt`  
+证书私钥位于：  
+`ssl/out/cert.key.pem`  
 
 成功之后，把根证书导入到操作系统里面，信任这个证书。
 
@@ -50,16 +52,16 @@ subjectAltName=DNS:*.one.dev,DNS:one.dev,DNS:*.two.dev,DNS:two.dev,DNS:*.three.d
 
 生成的证书位于：
 ```text
-ssl/out/<domain>-<date>-<time>/<domain>.cert.pem
-ssl/out/<domain>-<date>-<time>/<domain>.bundle.cert.pem
+ssl/out/<domain>-<date>-<time>/<domain>.crt
+ssl/out/<domain>-<date>-<time>/<domain>.bundle.crt
 ```
 
 证书有效期是 4 年，你可以修改 `ca.cnf` 来修改这个年限。
 
-私钥就是第一步生成的那个根证书私钥，即：  
-`ssl/out/root.key.pem`
+私钥就是第一步生成的证书私钥，即：  
+`ssl/out/cert.key.pem`
 
-其中 `<domain>.bundle.cert.pem` 是已经拼接好 CA 的证书，可以添加到 `nginx` 配置里面。  
+其中 `<domain>.bundle.crt` 是已经拼接好 CA 的证书，可以添加到 `nginx` 配置里面。  
 然后你就可以愉快地用 `https` 来访问你本地的开发网站了。
 
 ## 清空
