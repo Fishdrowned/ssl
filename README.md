@@ -85,7 +85,7 @@ default_days    = 1461
 [Provide subjectAltName to openssl directly on command line](http://security.stackexchange.com/questions/74345/provide-subjectaltname-to-openssl-directly-on-command-line)
 
 ## 关于 Let's Encrypt 客户端
-官方客户端 `certbot` [太复杂了](https://github.com/Neilpang/acme.sh/issues/386)，推荐使用 [acme.sh](https://github.com/Neilpang/acme.sh/wiki/%E8%AF%B4%E6%98%8E)，虽然我还没用过。
+官方客户端 `certbot` [太复杂了](https://github.com/Neilpang/acme.sh/issues/386)，推荐使用 [acme.sh](https://github.com/Neilpang/acme.sh/wiki/%E8%AF%B4%E6%98%8E)。
 
 我当时用的是 [`letsencrypt/letsencrypt`](https://github.com/letsencrypt/letsencrypt) （`certbot` 的前身），折腾了几天，然后把编译过的文件抽了出来，再套上一层自动化脚本，至今还能正常更新，就懒得挪窝了。
 
