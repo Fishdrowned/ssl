@@ -38,8 +38,8 @@ subjectAltName=DNS:*.one.dev,DNS:one.dev,DNS:*.two.dev,DNS:two.dev,DNS:*.three.d
 
 生成的证书位于：
 ```text
-out/<domain>/<date>-<time>/<domain>.crt
-out/<domain>/<date>-<time>/<domain>.bundle.crt
+out/<domain>/<domain>.crt
+out/<domain>/<domain>.bundle.crt
 ```
 
 证书有效期是 4 年，你可以修改 `ca.cnf` 来修改这个年限。
