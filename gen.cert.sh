@@ -12,12 +12,24 @@ then
     exit;
 fi
 
+if [ ! -d "./out/newcerts" ]; then
+    mkdir -p "./out/newcerts"
+fi
+
+if [ ! -f "./out/index.txt" ]; then
+    touch "./out/index.txt"
+fi
+
+if [ ! -f "./out/serial" ]; then
+    touch "./out/serial"
+    echo 1000 > ./out/serial
+fi
 SAN=""
 for var in "$@"
 do
     SAN+="DNS:*.${var},DNS:${var},"
 done
-SAN=${SAN: : -1}
+SAN=${SAN:0:${#SAN}-1}
 
 # Move to root directory
 cd "$(dirname "${BASH_SOURCE[0]}")"
@@ -53,4 +65,4 @@ ln -snf "../cert.key.pem" "${BASE_DIR}/$1.key.pem"
 # Output certifications
 echo
 echo "Certifications are located in:"
-ls -la --color `pwd`/${BASE_DIR}/*.*
+ls -la `pwd`/${BASE_DIR}/*.*
