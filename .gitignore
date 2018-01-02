@@ -1,4 +1,4 @@
 /.idea/
-/out
+/out/*
 /deploy-passport.sh
 /cert.all.sh

@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 cd "$(dirname "${BASH_SOURCE[0]}")"
 
+folder="./out"
+if [ ! -d "$folder" ]; then
+    mkdir "$folder"
+fi
+
 # Generate root cert along with root key
 openssl req -config ca.cnf \
     -newkey rsa:2048 -nodes -keyout out/root.key.pem \
