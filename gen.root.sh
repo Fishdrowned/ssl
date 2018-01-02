@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 cd "$(dirname "${BASH_SOURCE[0]}")"
 
-folder="./out"
-if [ ! -d "$folder" ]; then
-    mkdir "$folder"
+if [ -f "out/root.crt" ]; then
+    echo Root certificate already exists.
+    exit 1
+fi
+
+if [ ! -d "out" ]; then
+    bash flush.sh
 fi
 
 # Generate root cert along with root key
