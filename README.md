@@ -81,3 +81,6 @@ default_days    = 1461
 
 ## 关于 .dev 域名
 [Chrome to force .dev domains to HTTPS via preloaded HSTS](https://ma.ttias.be/chrome-force-dev-domains-https-via-preloaded-hsts/) ([2017-9-16](https://chromium-review.googlesource.com/c/chromium/src/+/669923))
+
+## 关于 Chrome 信任证书问题
+看到有人反映 Chrome 下无法信任证书，可参考 [这个文档](docs/chrome-trust.md)
