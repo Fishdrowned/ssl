@@ -14,9 +14,9 @@
 和 `cdn.example.dev`，它们可以使用同一个 `*.example.dev` 的证书。
 1. 现在你只需要一个证书，就可以搞定所有项目网站！
 
-我当时怎么没想到可以这样用 `SAN`：
+使用 `SAN` 来支持多域名和泛域名：
 ```ini
-subjectAltName=DNS:*.one.dev,DNS:one.dev,DNS:*.two.dev,DNS:two.dev,DNS:*.three.dev,DNS:three.dev,DNS:*.four.dev,DNS:four.dev
+subjectAltName=DNS:*.one.dev,DNS:one.dev,DNS:*.two.dev,DNS:two.dev,DNS:*.three.dev,DNS:three.dev
 ```
 
 ## 系统要求
@@ -42,13 +42,13 @@ out/<domain>/<domain>.crt
 out/<domain>/<domain>.bundle.crt
 ```
 
-证书有效期是 4 年，你可以修改 `ca.cnf` 来修改这个年限。
+证书有效期是 2 年，你可以修改 `ca.cnf` 来修改这个年限。
 
 根证书位于：  
 `out/root.crt`  
 成功之后，把根证书导入到操作系统里面，信任这个证书。
 
-根证书的有效期是 10 年，你可以修改 `gen.root.sh` 来修改这个年限。
+根证书的有效期是 20 年，你可以修改 `gen.root.sh` 来修改这个年限。
 
 证书私钥位于：  
 `out/cert.key.pem`
@@ -62,7 +62,7 @@ out/<domain>/<domain>.bundle.crt
 ## 配置
 你可以修改 `ca.cnf` 来修改你的证书年限。
 ```ini
-default_days    = 1461
+default_days    = 730
 ```
 
 可以修改 `gen.root.sh` 来自定义你的根证书名称和组织。
